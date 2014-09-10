@@ -24,7 +24,7 @@ class TestCollatz (TestCase) :
     # read
     # ----
 
-    def test_read (self) :
+    def test_read_1 (self) :
         r    = StringIO("1 10\n100 200\n201 210\n900 1000\n")
         i, j = collatz_read(r)
         self.assertEqual(i,  1)
@@ -50,6 +50,25 @@ class TestCollatz (TestCase) :
         v = collatz_eval(900, 1000)
         self.assertEqual(v, 174)
 
+    def test_eval_5 (self) :
+        v = collatz_eval(177, 367)
+        self.assertEqual(v, 144)
+
+    def test_eval_6 (self) :
+        v = collatz_eval(1, 36879)
+        self.assertEqual(v, 324)
+
+    def test_eval_7 (self) :
+        v = collatz_eval(1124, 1994)
+        self.assertEqual(v, 182)
+
+    def test_eval_8 (self) :
+        v = collatz_eval(112494, 994678)
+        self.assertEqual(v, 525)
+
+    def test_eval_9 (self) :
+        v = collatz_eval(236, 0437)
+        self.assertEqual(v, 144)
     # -----
     # print
     # -----
