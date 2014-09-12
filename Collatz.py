@@ -27,30 +27,29 @@ def collatz_read (r) :
 # ------------
 
 def collatz_eval (i, j) :
-    """
-    i the beginning of the range, inclusive
-    j the end       of the range, inclusive
-    return the max cycle length of the range [i, j]
-    """
-def collatz_eval (i, j) :
     if (i > j):
       i, j = j, i
     m = (j // 2) + 1
     if (m > i):
       i = m
+    cashe = {}
     max = 0
     for k in range (i, j+1):
       n = k
       assert n > 0
       c = 1
-      while n > 1 :
-
-              if (n % 2) == 0 :
-                n = (n // 2)
-                c += 1 
-              else :
-                n = n + (n // 2) + 1
-                c += 2
+      if n in cashe:
+         c = cashe[n]
+      else:
+        while n > 1 :
+            if (n % 2) == 0 :
+              n = (n // 2)
+              c += 1 
+            else :
+              n = n + (n // 2) + 1
+              c += 2
+        cashe[n] = c
+        
       assert c > 0
       if (c > max):
         max = c
